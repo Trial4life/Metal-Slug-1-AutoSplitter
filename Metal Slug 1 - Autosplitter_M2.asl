@@ -158,11 +158,16 @@ startup
 
 
 	//An array of bytes to find the boss's health variable
-	vars.scannerTargetBossHealth = new SigScanTarget(26,
+	/*vars.scannerTargetBossHealth = new SigScanTarget(26,
    	"FF FF FF FF 10 00 ?? ?? ?? ?? ?? 01 00 ?? 00 ?? " +
    	"FF FF FF FF FF FF FF FF FF FF ?? ?? ?? 00 00 00 " +
    	"FF FF FF 00 ?? 00 ?? ?? FF ?? FF FF FF FF ?? ?? " +
    	"40 06 FF FF ?? ?? ?? 01 00 FF ?? FF FF ?? 01 ?? "
+	);*/
+	vars.scannerTargetBossHealth = new SigScanTarget(32,
+   	"?? ?? 2D 00 C6 50 FF FF FF FF 10 00 ?? ?? ?? ?? " +
+		"?? 01 00 ?? 00 ?? FF FF FF FF FF FF FF FF FF FF " +
+		"?? ?? ?? 00 00 00 FF FF FF 00 ?? 00 ?? ?? FF ??"
 	);
 
 
@@ -569,10 +574,10 @@ split
 	print("new byte[] { " + string.Join(", ", data) + " };");//A function that finds an array of bytes in memory
 */
 
-	//Check time since last split, don't split if we already split in the last 10 seconds
+	//Check time since last split, don't split if we already split in the last 8 seconds
 	var timeSinceLastSplit = Environment.TickCount - vars.prevSplitTime;
 
-	if (vars.prevSplitTime != -1 && timeSinceLastSplit < 10000)
+	if (vars.prevSplitTime != -1 && timeSinceLastSplit < 8000)
 	{
 		return false;
 	}
@@ -586,7 +591,7 @@ split
 	}
 
 
-	//Knowing when we get to the last boss (skipped for this level)
+	//Knowing when we get to the last boss
 	else if (vars.splitCounter == 10)
 	{
 

@@ -583,7 +583,7 @@ split
 	}
 
 
-	//Knowing when we get to the last boss (skipped for this level)
+	//Knowing when we get to the last boss
 	else if (vars.splitCounter == 10)
 	{
 
